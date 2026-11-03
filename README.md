@@ -11,9 +11,21 @@ This guide is for you, Salam. The technical plan for Claude Code is in `docs/PRO
 | | Status | Runs on | What you get |
 |---|---|---|---|
 | **v1** | ✅ Built, ready to set up | GitHub Actions (free) | Hourly Telegram alerts, daily research + email digest |
-| **v2** | 📋 Planned, for Claude Code to build | Your VPS, 24/7 | Everything below |
+| **v2 Phase 0** | ✅ Built, ready to test on your VPS | Your VPS, 24/7 | v1's alerts and digest as an always-on service: checks every 30 min, a database, a Telegram bot that only answers you (`/status`, `/scan`, `/today`), failure warnings, nightly backups |
+| **v2 Phases 1–5** | 📋 Planned | Your VPS, 24/7 | Everything below |
 
-To use v1 now, follow `docs/V1_SETUP.md`. It keeps working while v2 is built.
+- To use v1 now, follow `docs/V1_SETUP.md`. It keeps working while v2 is built.
+- To set up v2 on your VPS, follow `docs/V2_SETUP.md`.
+
+### Build phases
+| Phase | What it adds | Status |
+|---|---|---|
+| 0 | v1 ported to an always-on service: SQLite, Docker, locked-down Telegram bot, backups | ✅ Done, waiting for your 24-hour VPS test |
+| 1 | Faster checks (every 1–5 min where feeds allow), source health alerts, smarter duplicate detection, spending cap + `/spend` | Next |
+| 2 | 👍/👎 buttons that teach it your taste, pitch drafts, pipeline, deadline reminders, earnings, weekly review | |
+| 3 | Market Desk in signals-only mode: news, analysis, trade proposals, no orders | |
+| 4 | Paper trading with the risk engine, approval buttons and `/halt` | |
+| 5 | A real broker in test mode, then live (only when you choose a broker and the safety gates are met) | |
 
 ---
 
@@ -82,14 +94,14 @@ The weekly review shows your run-rate honestly, so you can set milestones that s
 
 ## Handing this to Claude Code
 
-1. Unzip the `money-radar` folder on your PC (or upload it to your VPS).
-2. Open a terminal in that folder and start Claude Code (`claude`), or open the folder in Claude Code Desktop.
-3. Paste this:
+The project lives in the GitHub repo `R-enord/Oryn`. Open it in Claude Code (claude.ai/code, Claude Code Desktop, or `claude` in a terminal inside the folder).
 
-> Read CLAUDE.md and docs/PROJECT_BRIEF.md. This is my Money Radar project; v1 is in agent/. Propose your Phase 0 plan: port v1 into an always-on service on my VPS with SQLite, Docker Compose and a Telegram bot locked to my chat id. Then wait for my go-ahead. Don't start any trading code until I say so.
+Phase 0 is built. Once it has run on your VPS for a day without problems, start the next phase with:
 
-4. Work through the phases one at a time. At the end of each, Claude Code will summarise and wait for you. Test each phase for a few days before moving on.
-5. When it reaches Phase 3 (market signals), ask it to research brokers/exchanges available to you and give you the comparison before writing any broker code.
+> Read CLAUDE.md and docs/PROJECT_BRIEF.md. Phase 0 is running on my VPS. Propose your Phase 1 plan, then wait for my go-ahead. Don't start any trading code until I say so.
+
+1. Work through the phases one at a time. At the end of each, Claude Code will summarise and wait for you. Test each phase for a few days before moving on.
+2. When it reaches Phase 3 (market signals), ask it to research brokers/exchanges available to you and give you the comparison before writing any broker code.
 
 `CLAUDE.md` holds the standing rules (safety, testing, no live trading by default), so they apply to every session automatically.
 
@@ -113,9 +125,14 @@ README.md               this guide
 CLAUDE.md               standing rules for Claude Code
 docs/PROJECT_BRIEF.md   full technical spec for v2
 docs/V1_SETUP.md        how to set up v1 on GitHub today
-agent/                  v1 code
-config.yaml             settings + sources
-goals.yaml              income targets the reviews track
+docs/V2_SETUP.md        how to run v2 on your VPS
+config.yaml             settings + sources (shared by v1 and v2; `service:` is v2 only)
 profile.yaml            who the agent hunts for
-.github/workflows/      v1 schedules
+goals.yaml              income targets the reviews track
+.env.example            the keys you fill in (copy to .env)
+agent/                  v1 code
+radar/                  v2 code (the always-on service)
+tests/                  automated checks for v2 (`make check`)
+Dockerfile, docker-compose.yml, deploy/   how v2 runs on the VPS
+.github/workflows/      v1 schedules + v2 test runs
 ```

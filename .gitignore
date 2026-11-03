@@ -2,3 +2,11 @@ __pycache__/
 *.pyc
 .env
 .venv/
+data/
+*.db
+*.db-wal
+*.db-shm
+*.egg-info/
+build/
+.pytest_cache/
+.ruff_cache/

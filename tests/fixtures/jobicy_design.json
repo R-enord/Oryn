@@ -1,0 +1,40 @@
+{
+  "apiVersion": "2",
+  "documentationUrl": "https://jobicy.com/jobs-rss-feed",
+  "friendlyNotice": "Please link back to Jobicy and mention it as a source.",
+  "jobCount": 2,
+  "lastUpdate": "2026-11-03 08:00:00",
+  "jobs": [
+    {
+      "id": 123456,
+      "url": "https://jobicy.com/jobs/123456-3d-artist-product-visualization",
+      "jobSlug": "123456-3d-artist-product-visualization",
+      "jobTitle": "3D Artist (Product Visualization)",
+      "companyName": "Nordic Living",
+      "companyLogo": "https://jobicy.com/data/server-nyc0409/galaxy/mercury/2026/11/nordic.png",
+      "jobIndustry": ["Design &amp; Multimedia"],
+      "jobType": ["full-time"],
+      "jobGeo": "Anywhere",
+      "jobLevel": "Midweight",
+      "jobExcerpt": "We&#8217;re looking for a 3D artist to produce furniture renders in Blender.",
+      "jobDescription": "<p>Full description: furniture renders, lifestyle scenes, 360 spins.</p>",
+      "pubDate": "2026-11-02 09:30:00",
+      "annualSalaryMin": "30000",
+      "annualSalaryMax": "45000",
+      "salaryCurrency": "USD"
+    },
+    {
+      "id": 123457,
+      "url": "https://jobicy.com/jobs/123457-brand-designer",
+      "jobSlug": "123457-brand-designer",
+      "jobTitle": "Brand Designer",
+      "companyName": "Pixel &amp; Co",
+      "jobIndustry": ["Design &amp; Multimedia"],
+      "jobType": ["contract"],
+      "jobGeo": "EMEA",
+      "jobLevel": "Senior",
+      "jobExcerpt": "Brand identity work for B2B clients.",
+      "pubDate": "2026-11-01 16:00:00"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>We Work Remotely: Design Jobs</title>
+    <link>https://weworkremotely.com/categories/remote-design-jobs</link>
+    <description>Remote Design jobs</description>
+    <language>en-US</language>
+    <ttl>60</ttl>
+    <item>
+      <title>Lumen Labs: Senior 3D Product Designer</title>
+      <region>Anywhere in the World</region>
+      <category>Design</category>
+      <type>Full-Time</type>
+      <description>&lt;p&gt;&lt;strong&gt;Headquarters:&lt;/strong&gt; Berlin&lt;/p&gt;&lt;p&gt;We are hiring a 3D product designer to create Blender renders and animations for our hardware launches.&lt;/p&gt;</description>
+      <pubDate>Mon, 02 Nov 2026 14:00:00 +0000</pubDate>
+      <guid>https://weworkremotely.com/remote-jobs/lumen-labs-senior-3d-product-designer</guid>
+      <link>https://weworkremotely.com/remote-jobs/lumen-labs-senior-3d-product-designer</link>
+    </item>
+    <item>
+      <title>Brightside: UX Researcher (US only)</title>
+      <region>USA Only</region>
+      <category>Design</category>
+      <type>Full-Time</type>
+      <description>&lt;p&gt;Must be based in the United States.&lt;/p&gt;</description>
+      <pubDate>Mon, 02 Nov 2026 12:00:00 +0000</pubDate>
+      <guid>https://weworkremotely.com/remote-jobs/brightside-ux-researcher</guid>
+      <link>https://weworkremotely.com/remote-jobs/brightside-ux-researcher</link>
+    </item>
+  </channel>
+</rss>

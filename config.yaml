@@ -3,7 +3,7 @@
 settings:
   scorer_model: claude-haiku-5-5       # cheap + fast, scores every new post
   research_model: claude-sonnet-5-5    # smarter, runs once a day with web search
-  web_search_tool: web_search_20250305
+  web_search_tool: web_search_20260209   # current version for Sonnet 5.5 (adds result filtering)
   alert_score: 75            # instant Telegram ping at or above this score
   digest_score: 50           # saved for the morning email at or above this score
   max_alerts_per_run: 5      # stops a flood of pings in one run
@@ -13,6 +13,18 @@ settings:
   batch_size: 12             # posts scored per Claude call
   exclude:                   # regex; matching posts are dropped before any AI cost
     - '\[for hire\]'         # people offering services, not hiring
+
+# v2 service only (python -m radar run on your VPS). v1 on GitHub Actions ignores this block.
+# Restart the service after changing this block: docker compose restart
+service:
+  watch_every_minutes: 30    # how often to check every source
+  digest_time: "07:00"       # morning digest, Lagos time
+  timezone: Africa/Lagos
+  backup_time: "03:30"       # nightly database snapshot into data/backups
+  backup_keep_days: 14
+  db_path: data/radar.db
+  backup_dir: data/backups
+  startup_message: true      # Telegram ping each time the service starts
 
 # type: rss | jobicy | remoteok
 # keywords: only keep posts that mention at least one of these words

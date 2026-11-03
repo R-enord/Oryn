@@ -1,0 +1,30 @@
+# Money Radar v2 without Docker (Python venv + systemd). Use this OR docker compose, not both.
+#
+#   sudo cp deploy/radar.service /etc/systemd/system/money-radar.service
+#   # edit User= and the paths below if your checkout isn't /home/salam/money-radar
+#   sudo systemctl daemon-reload && sudo systemctl enable --now money-radar
+#   journalctl -u money-radar -f
+[Unit]
+Description=Money Radar v2 (opportunity radar + Telegram bot)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=salam
+WorkingDirectory=/home/salam/money-radar
+Environment=RADAR_HOME=/home/salam/money-radar
+ExecStart=/home/salam/money-radar/.venv/bin/python -m radar run
+Restart=always
+RestartSec=15
+TimeoutStopSec=30
+
+# Hardening: the service only needs to write its data folder.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/salam/money-radar/data
+
+[Install]
+WantedBy=multi-user.target

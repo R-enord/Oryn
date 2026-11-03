@@ -1,6 +1,6 @@
 # CLAUDE.md — rules for working on Money Radar
 
-**Start here:** read `docs/PROJECT_BRIEF.md` (source of truth), then `README.md`, `profile.yaml` and `config.yaml`. v1 code lives in `agent/` and works. Port it into v2; don't throw its logic away.
+**Start here:** read `docs/PROJECT_BRIEF.md` (source of truth), then `docs/PROGRESS.md` (what's built, decisions, what's next), `README.md`, `profile.yaml` and `config.yaml`. v1 code lives in `agent/` and works; v2 lives in `radar/` and reuses v1's logic. Don't throw that logic away.
 
 ## Always
 - Work in the phases in the brief (§11). At the end of each phase: run the tests, summarise what changed and what's next, and wait for Salam's go-ahead.
@@ -22,3 +22,4 @@
 - Structured LLM output via forced tool use (see `agent/scorer.py`).
 - One failing source or model call must never crash the service. Log it, count it, alert once.
 - Times stored in UTC; shown to Salam in Lagos time (UTC+1).
+- `make check` (ruff + pytest) must pass before a phase is called done. Record each phase's decisions in `docs/PROGRESS.md`.

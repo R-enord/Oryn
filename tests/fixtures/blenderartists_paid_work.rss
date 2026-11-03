@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Paid Work - Blender Artists Community</title>
+    <link>https://blenderartists.org/c/jobs/paid-work/53</link>
+    <description>Topics in the 'Paid Work' category Post here if you are looking to hire a Blender artist.</description>
+    <atom:link href="https://blenderartists.org/c/jobs/paid-work/53.rss" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Looking for a Blender artist: furniture product renders (20 images)</title>
+      <dc:creator><![CDATA[nordic_home]]></dc:creator>
+      <category>Paid Work</category>
+      <description><![CDATA[<p>We are a small furniture brand and need <strong>20 photoreal renders</strong> of our sofa range on white and in two room sets. Budget $600&ndash;$900. Remote, worldwide. Please send portfolio links.</p>]]></description>
+      <link>https://blenderartists.org/t/looking-for-a-blender-artist-furniture-product-renders-20-images/1580001</link>
+      <pubDate>Mon, 02 Nov 2026 10:15:00 +0000</pubDate>
+      <discourse:topicPinned>No</discourse:topicPinned>
+      <discourse:topicClosed>No</discourse:topicClosed>
+      <discourse:topicArchived>No</discourse:topicArchived>
+      <guid isPermaLink="false">blenderartists.org-topic-1580001</guid>
+      <source url="https://blenderartists.org/t/looking-for-a-blender-artist-furniture-product-renders-20-images/1580001.rss">Looking for a Blender artist: furniture product renders (20 images)</source>
+    </item>
+    <item>
+      <title>[For Hire] Experienced character animator available</title>
+      <dc:creator><![CDATA[anim_pro]]></dc:creator>
+      <category>Paid Work</category>
+      <description><![CDATA[<p>I am available for character animation work. DM me.</p>]]></description>
+      <link>https://blenderartists.org/t/for-hire-experienced-character-animator-available/1580002</link>
+      <pubDate>Mon, 02 Nov 2026 09:00:00 +0000</pubDate>
+      <guid isPermaLink="false">blenderartists.org-topic-1580002</guid>
+    </item>
+    <item>
+      <title>Need product animation for Kickstarter campaign (headphones)</title>
+      <dc:creator><![CDATA[soundco]]></dc:creator>
+      <category>Paid Work</category>
+      <description><![CDATA[<p>30-second hero animation of our headphones, CAD files provided. Paid, $1,200. Deadline in 3 weeks.</p>]]></description>
+      <link>https://blenderartists.org/t/need-product-animation-for-kickstarter-campaign-headphones/1580003</link>
+      <pubDate>Sun, 01 Nov 2026 18:40:00 +0000</pubDate>
+      <guid isPermaLink="false">blenderartists.org-topic-1580003</guid>
+    </item>
+  </channel>
+</rss>
