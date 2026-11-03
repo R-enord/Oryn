@@ -1,0 +1,42 @@
+# Who the agent is hunting for. Claude reads this whole file, so plain
+# English is fine. The better this is, the better the matches.
+
+name: Salam
+location: Lagos, Nigeria (WAT, UTC+1)
+works_as: Independent freelance 3D artist, 4+ years; building toward his own creative agency
+finds_work_on: [Upwork]
+
+core_skills:            # paid work he can deliver today
+  - Blender product visualisation and product animation
+  - Furniture modelling
+  - Architectural and interior visualisation
+  - Hard-surface modelling
+  - UV unwrapping and model refinement (e.g. apparel models)
+  - Video editing in DaVinci Resolve, Premiere Pro and After Effects (3 years)
+
+growing_skills:         # "stretch" track: capable, still levelling up
+  - Substance Painter texturing (just started)
+  - Sculpting in ZBrush, game-ready asset creation
+  - Motion graphics and graphic design
+  - Blender add-on development in Python
+  - Go and web development (learning)
+  - 3D product configurators for websites
+  - Pool design in Pool Studio (exploring)
+
+interests:
+  - Original product design: footwear and furniture concepts
+  - Selling his own assets and Blender add-ons
+  - Growing into a 3D generalist: product design/viz, game-ready assets, sculpting, CGI
+
+avoid:
+  - VFX work
+  - Character animation
+  - Unpaid, "exposure" or revenue-share-only work
+  - Roles that require living in a specific country (unless Nigeria or worldwide)
+
+# EDIT THESE to your real numbers so the agent can judge pay properly.
+min_project_budget_usd: 50
+target_hourly_usd: 20
+
+# EDIT: how you can actually receive money (helps flag jobs you can't get paid for).
+can_get_paid_via: [Upwork]

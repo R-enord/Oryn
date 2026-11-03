@@ -1,0 +1,5 @@
+# Targets the weekly review tracks (v2). Edit anytime.
+long_term:
+  amount_usd: 10000000
+  by: 2027-12-31
+milestones: []   # add your own, e.g.  - {amount_usd: 2000, by: 2026-12-31, note: "first $2k month"}

@@ -1,0 +1,70 @@
+# Money Radar settings. Edit freely: changes apply on the next run.
+
+settings:
+  scorer_model: claude-haiku-5-5       # cheap + fast, scores every new post
+  research_model: claude-sonnet-5-5    # smarter, runs once a day with web search
+  web_search_tool: web_search_20250305
+  alert_score: 75            # instant Telegram ping at or above this score
+  digest_score: 50           # saved for the morning email at or above this score
+  max_alerts_per_run: 5      # stops a flood of pings in one run
+  max_items_per_run: 60      # caps API spend per hourly run
+  max_age_days: 7            # ignore posts older than this
+  research_max_searches: 8   # web searches per daily research run
+  batch_size: 12             # posts scored per Claude call
+  exclude:                   # regex; matching posts are dropped before any AI cost
+    - '\[for hire\]'         # people offering services, not hiring
+
+# type: rss | jobicy | remoteok
+# keywords: only keep posts that mention at least one of these words
+# title_must_match: regex the title must match
+# enabled: false turns a source off
+sources:
+  - name: Blender Artists · Paid Work
+    type: rss
+    url: https://blenderartists.org/c/jobs/paid-work/53.rss
+
+  - name: We Work Remotely · Design
+    type: rss
+    url: https://weworkremotely.com/categories/remote-design-jobs.rss
+
+  - name: We Work Remotely · Full-Stack
+    type: rss
+    url: https://weworkremotely.com/categories/remote-full-stack-programming-jobs.rss
+    keywords: [golang, go developer, three.js, threejs, webgl, blender, 3d, configurator]
+
+  - name: Jobicy · Design & Multimedia
+    type: jobicy
+    url: https://jobicy.com/api/v2/remote-jobs?count=50&industry=design-multimedia
+
+  - name: Jobicy · Worldwide roles
+    type: jobicy
+    url: https://jobicy.com/api/v2/remote-jobs?count=100&geo=anywhere
+    keywords: &creative [3d, blender, render, rendering, cgi, product visualization, product visualisation,
+                         animation, animator, motion designer, motion graphics, video editor, video editing,
+                         after effects, davinci, premiere, unreal, three.js, golang, configurator]
+
+  - name: Remote OK
+    type: remoteok
+    url: https://remoteok.com/api
+    keywords: *creative
+
+  # Reddit blocks cloud servers (GitHub Actions included), so these are off.
+  # The daily researcher searches Reddit for you instead. Turn them on only
+  # if you run Money Radar from your own PC.
+  - name: r/forhire · Hiring
+    type: rss
+    url: https://www.reddit.com/r/forhire/new/.rss
+    title_must_match: '\[hiring\]'
+    enabled: false
+
+  - name: r/HungryArtists
+    type: rss
+    url: https://www.reddit.com/r/HungryArtists/new/.rss
+    title_must_match: '\[hiring\]'
+    enabled: false
+
+  - name: r/gameDevClassifieds
+    type: rss
+    url: https://www.reddit.com/r/gameDevClassifieds/new/.rss
+    title_must_match: '\[(paid|hiring)\]'
+    enabled: false
