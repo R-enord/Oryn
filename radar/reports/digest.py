@@ -42,18 +42,19 @@ async def run_digest(ctx: Context) -> DigestResult:
     settings = ctx.config.settings
     tz = ctx.config.service.timezone
     now = now_utc()
-    date_label = local(now, tz).strftime("%a %d %b %Y")
-    today = local(now, tz).date().isoformat()
+    now_local = local(now, tz)  # focus rotation and "Today is …" follow Salam's calendar, not UTC
+    date_label = now_local.strftime("%a %d %b %Y")
+    today = now_local.date().isoformat()
     ctx.db.set("digest.attempts", f"{today}:{digest_attempts(ctx.db, today) + 1}")
 
     if ctx.fake_ai:
-        research = researcher.fake_research(now)
+        research = researcher.fake_research(now_local)
     else:
         try:
             research = await researcher.run_research(ctx.llm, ctx.config.profile_text, settings,
-                                                     ctx.db.recent_research_urls(), now)
+                                                     ctx.db.recent_research_urls(), now_local)
         except Exception as exc:  # noqa: BLE001 — still send the matches
-            label, _ = researcher.todays_focus(now)
+            label, _ = researcher.todays_focus(now_local)
             log.warning("research failed: %s", exc)
             research = {"focus": label, "picks": [], "insight": "",
                         "error": f"{exc.__class__.__name__}: {str(exc)[:200]}"}

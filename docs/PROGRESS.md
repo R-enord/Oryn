@@ -4,7 +4,7 @@ Where v2 stands, what was decided along the way, and what's open. Newest phase f
 
 ## Phase 0: v1 ported to an always-on service ✅ built · ⏳ awaiting Salam's 24-hour VPS run
 
-**Done when (brief §11):** v1 behaviour reproduced ✅ · tests pass ✅ (79, `make check`) · runs 24h on the VPS without errors ⏳ (Salam)
+**Done when (brief §11):** v1 behaviour reproduced ✅ · tests pass ✅ (80, `make check`) · runs 24h on the VPS without errors ⏳ (Salam)
 
 ### What was built
 - `radar/` package, one async process: APScheduler (watch every 30 min, digest 07:00 Lagos, backup 03:30, housekeeping, heartbeat) + python-telegram-bot polling.
@@ -26,6 +26,12 @@ Where v2 stands, what was decided along the way, and what's open. Newest phase f
 - `sources doctor` exists now as v1's `check` (live fetch report); the persistent health alerts are Phase 1.
 - Matches leave the digest queue once delivered: by email when email is configured, otherwise by Telegram (v1 kept them forever without email).
 - Feed fixtures in `tests/fixtures/` follow each site's documented format; the build sandbox couldn't reach the sites. `sources doctor` on the VPS is the live check.
+
+### First run (build sandbox, 3 Nov 2026)
+Ran `python -m radar run --fake-ai` against the sample feeds served locally (the sandbox can't reach the real sites and had no keys). The service started, scored and alerted on the first pass, picked up a newly added post on the next scheduled pass without re-alerting old ones, ran a digest, answered `status` / `health`, shut down cleanly on SIGTERM and took a backup. No errors in the log. It surfaced and fixed:
+- Digest research used the UTC date, so a `/today` between 00:00 and 01:00 Lagos got the previous day's focus and date. Now uses Lagos time throughout.
+- The watch summary said "0 alerts" when Telegram wasn't delivering; it now says how many alerts were not delivered and how many were over the per-run cap.
+- The Remote OK test fixture had a timestamp a year off from its date.
 
 ### Open for Salam (from brief §13)
 1. VPS provider/specs → then follow `docs/V2_SETUP.md`.

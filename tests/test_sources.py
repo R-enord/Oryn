@@ -59,7 +59,7 @@ def test_parse_remoteok_skips_legal_notice():
     assert video.title == "Video Editor (After Effects) — Clipwise"
     assert video.meta["location"] == "Worldwide"
     assert video.meta["salary_usd"] == "30000–50000"
-    assert video.published == datetime.fromtimestamp(1762100000, tz=UTC).isoformat()
+    assert video.published == "2026-11-02T16:13:20+00:00"  # epoch and date agree
 
 
 def test_parsers_tolerate_garbage():

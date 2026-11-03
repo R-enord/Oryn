@@ -22,7 +22,8 @@ class WatchResult:
     scored: int = 0
     matches: int = 0
     alerts_sent: int = 0
-    alerts_held: int = 0
+    alerts_failed: int = 0  # tried, but Telegram didn't take it (still goes in the digest)
+    alerts_held: int = 0    # over max_alerts_per_run (digest only)
     sources: list[SourceResult] = field(default_factory=list)
 
     @property
@@ -31,7 +32,11 @@ class WatchResult:
 
     def summary(self) -> str:
         text = (f"{self.passed} passed filters · {self.new} new · {self.scored} scored · {self.matches} matches · "
-                f"{self.alerts_sent} alerts")
+                f"{self.alerts_sent} alerts sent")
+        if self.alerts_failed:
+            text += f" · {self.alerts_failed} alerts NOT delivered (Telegram)"
+        if self.alerts_held:
+            text += f" · {self.alerts_held} over the per-run cap (digest only)"
         if self.failed_sources:
             text += f" · failed sources: {', '.join(self.failed_sources)}"
         return text
@@ -79,10 +84,13 @@ async def run_watch(ctx: Context) -> WatchResult:
     ctx.db.mark_seen(processed, now)
 
     alerts.sort(key=lambda r: r["score"], reverse=True)
-    for rec in alerts[: settings.max_alerts_per_run]:
+    to_send = alerts[: settings.max_alerts_per_run]
+    for rec in to_send:
         if await ctx.notifier.send(render.telegram_alert(rec)):
             ctx.db.mark_alerted(rec["id"])
             result.alerts_sent += 1
-    result.alerts_held = max(0, len(alerts) - result.alerts_sent)
+        else:
+            result.alerts_failed += 1
+    result.alerts_held = len(alerts) - len(to_send)
     log.info("watch: %s", result.summary())
     return result

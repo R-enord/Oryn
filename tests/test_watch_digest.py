@@ -83,6 +83,8 @@ async def test_alert_cap_and_failed_alerts(tmp_path, db):
         mock_feeds(router)
         result = await run_watch(ctx)
     assert len(notifier.sent) == 1 and result.alerts_sent == 0
+    assert result.alerts_failed == 1 and result.alerts_held == 2
+    assert "1 alerts NOT delivered" in result.summary() and "2 over the per-run cap" in result.summary()
     assert all(q["alerted_at"] is None for q in db.digest_queue(0))  # still goes to the digest
 
 
@@ -155,3 +157,20 @@ async def test_digest_attempts_are_counted_per_day(config, db):
     today = db.get("digest.attempts").split(":")[0]
     assert digest_attempts(db, today) == 2
     assert digest_attempts(db, "1999-01-01") == 0
+
+
+async def test_digest_uses_lagos_date_for_focus_and_label(config, db, monkeypatch):
+    """23:30 UTC on Tuesday is already Wednesday in Lagos: label, focus and prompt must all say Wednesday."""
+    from datetime import UTC, datetime
+
+    import radar.reports.digest as digest_mod
+
+    monkeypatch.setattr(digest_mod, "now_utc", lambda: datetime(2026, 11, 3, 23, 30, tzinfo=UTC))
+    notifier = RecordingNotifier()
+    claude = FakeClaude([RESEARCH])
+    ctx = make_ctx(config, db, claude, notifier)
+    await run_digest(ctx)
+    assert "Wed 04 Nov 2026" in notifier.sent[-1]
+    assert "(Brands needing visuals)" in notifier.sent[-1]
+    assert "Today is Wednesday 04 November 2026" in claude.calls[0]["messages"][0]["content"]
+    assert digest_attempts(db, "2026-11-04") == 1
