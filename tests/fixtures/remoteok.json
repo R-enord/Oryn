@@ -1,0 +1,31 @@
+[
+  {"last_updated": 1793743200, "legal": "API Terms of Service: Please link back to the URL on Remote OK and mention Remote OK as a source, so we get traffic back from your site."},
+  {
+    "slug": "remote-video-editor-after-effects-clipwise-1100001",
+    "id": "1100001",
+    "epoch": 1793636000,
+    "date": "2026-11-02T16:13:20+00:00",
+    "company": "Clipwise",
+    "company_logo": "",
+    "position": "Video Editor (After Effects)",
+    "tags": ["video", "editor", "after effects", "motion graphics"],
+    "description": "<p>Edit short-form product videos in Premiere Pro and After Effects. Worldwide.</p>",
+    "location": "Worldwide",
+    "apply_url": "https://remoteok.com/l/1100001",
+    "salary_min": 30000,
+    "salary_max": 50000,
+    "url": "https://remoteOK.com/remote-jobs/remote-video-editor-after-effects-clipwise-1100001"
+  },
+  {
+    "slug": "remote-backend-engineer-java-fintechco-1100002",
+    "id": "1100002",
+    "epoch": 1793626000,
+    "date": "2026-11-02T13:26:40+00:00",
+    "company": "FintechCo",
+    "position": "Backend Engineer (Java)",
+    "tags": ["java", "backend"],
+    "description": "<p>Spring Boot microservices.</p>",
+    "location": "Europe",
+    "url": "https://remoteOK.com/remote-jobs/remote-backend-engineer-java-fintechco-1100002"
+  }
+]

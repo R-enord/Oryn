@@ -1,0 +1,20 @@
+# Money Radar v2 on your VPS:  docker compose up -d --build
+services:
+  radar:
+    build: .
+    image: money-radar:latest
+    container_name: money-radar
+    restart: unless-stopped
+    env_file: .env
+    # Runs as your VPS user so it can write ./data. Set RADAR_UID / RADAR_GID in .env (see docs/V2_SETUP.md).
+    user: "${RADAR_UID:-1000}:${RADAR_GID:-1000}"
+    volumes:
+      - ./data:/app/data
+      - ./config.yaml:/app/config.yaml:ro
+      - ./profile.yaml:/app/profile.yaml:ro
+      - ./goals.yaml:/app/goals.yaml:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
